@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="formulario">
+
+        <form>
+            <h3>Datos Personales</h3>
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input [(ngModel)]="nombre" type="text" name="nombre">
+            </div>
+
+            <div class="form-group">
+                <label>Apellido paterno</label>
+                <input [(ngModel)]="paterno" type="text" name="paterno">
+            </div>
+
+            <div class="form-group">
+                <label>Apellido materno</label>
+                <input [(ngModel)]="materno" type="text" name="materno">
+            </div>
+
+            <h3>Fecha de nacimiento</h3>
+
+            <div class="fecha">
+
+                    <label>Día</label>
+                    <input [(ngModel)]="dia" type="number" name="dia">
+        
+                    <label>Mes</label>
+                    <input [(ngModel)]="mes" type="number" name="mes">
+               
+                    <label>Año</label>
+                    <input [(ngModel)]="anio" type="number" name="anio">
+
+            </div>
+            <h3>Sexo</h3>
+
+            <div>
+                <input [(ngModel)]="sexo" type="radio" name="sexo" value="Masculino">
+                <label>Masculino</label>
+            </div>
+
+            <div>
+                <input [(ngModel)]="sexo" type="radio" name="sexo" value="Femenino">
+                <label>Femenino</label>
+            </div>
+
+            <br>
+
+            <button (click)="imprimir()" type="button"> Imprimir </button>
+        </form>
+    </div>
+
+    <div *ngIf="mostrar">
+        <h2>
+            Hola {{nombre}} {{paterno}} {{materno}}
+        </h2>
+        <p>Tienes {{edad}} años</p>
+        <p>Tu signo zodiacal es {{signo}}</p>
+
+            <img [src]="imagenSigno" [alt]="signo" width="100">
+
+    </div>
+
+</div>
+
+</body>
+</html>
