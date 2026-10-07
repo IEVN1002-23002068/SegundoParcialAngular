@@ -1,0 +1,236 @@
+
+<div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+
+  <h1 class="text-3xl font-bold text-gray-900 mb-6">
+    Formulario
+  </h1>
+
+  <form [formGroup]="formularios">
+
+    <!-- Matrícula -->
+    <div class="mb-5">
+
+      <label
+        for="matricula"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Matrícula
+      </label>
+
+      <input
+        type="text"
+        id="matricula"
+        name="matricula"
+        formControlName="matricula"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Matrícula"
+      >
+
+      <!-- Error required -->
+      <div
+        *ngIf="
+          contactForm.get('matricula')?.touched &&
+          contactForm.get('matricula')?.errors?.['required']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        Este campo es obligatorio.
+      </div>
+
+      <!-- Error minlength -->
+      <div
+        *ngIf="
+          contactForm.get('matricula')?.touched &&
+          contactForm.get('matricula')?.errors?.['minlength']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        La matrícula debe tener al menos
+        {{
+          contactForm.get('matricula')?.errors?.['minlength']?.requiredLength
+        }}
+        caracteres.
+      </div>
+
+    </div>
+
+
+    <!-- Nombre -->
+    <div class="mb-5">
+
+      <label
+        for="nombre"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Nombre
+      </label>
+
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        formControlName="nombre"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Nombre"
+      >
+
+      <!-- Error required -->
+      <div
+        *ngIf="
+          contactForm.get('nombre')?.touched &&
+          contactForm.get('nombre')?.errors?.['required']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        Este campo es obligatorio.
+      </div>
+
+      <!-- Error minlength -->
+      <div
+        *ngIf="
+          contactForm.get('nombre')?.touched &&
+          contactForm.get('nombre')?.errors?.['minlength']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        El nombre debe tener al menos
+        {{
+          contactForm.get('nombre')?.errors?.['minlength']?.requiredLength
+        }}
+        caracteres.
+      </div>
+
+    </div>
+
+
+    <!-- Correo -->
+    <div class="mb-5">
+
+      <label
+        for="correo"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Correo
+      </label>
+
+      <input
+        type="email"
+        id="correo"
+        name="correo"
+        formControlCorreo="matricula"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Correo electrónico"
+      >
+
+      <!-- Error required -->
+      <div
+        *ngIf="
+          contactForm.get('correo')?.touched &&
+          contactForm.get('correo')?.errors?.['required']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        Este campo es obligatorio.
+      </div>
+
+      <!-- Error minlength -->
+      <div
+        *ngIf="
+          contactForm.get('correo')?.touched &&
+          contactForm.get('correo')?.errors?.['minlength']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        El correo debe tener al menos
+        {{
+          contactForm.get('correo')?.errors?.['minlength']?.requiredLength
+        }}
+        caracteres.
+      </div>
+
+    </div>
+
+
+    <!-- Materia -->
+    <div class="mb-5">
+
+      <label
+        for="materia"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Materia
+      </label>
+
+      <input
+        type="text"
+        id="materia"
+        name="materia"
+        formControlName="matricula"
+        required
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        placeholder="Materia"
+      >
+
+      <!-- Error required -->
+      <div
+        *ngIf="
+          contactForm.get('materia')?.touched &&
+          contactForm.get('materia')?.errors?.['required']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        Este campo es obligatorio.
+      </div>
+
+      <!-- Error minlength -->
+      <div
+        *ngIf="
+          contactForm.get('materia')?.touched &&
+          contactForm.get('materia')?.errors?.['minlength']
+        "
+        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
+        role="alert"
+      >
+        La materia debe tener al menos
+        {{
+          contactForm.get('materia')?.errors?.['minlength']?.requiredLength
+        }}
+        caracteres.
+      </div>
+
+    </div>
+
+
+    <!-- Botón -->
+    <div class="flex justify-end mt-5">
+
+      <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800
+               focus:ring-4 focus:outline-none focus:ring-blue-300
+               font-medium rounded-lg text-sm px-5 py-2.5
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        Guardar
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
