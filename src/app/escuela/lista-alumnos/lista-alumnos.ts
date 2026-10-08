@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IAlumnos } from './alumnos';
-import { FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -8,28 +8,40 @@ import { FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angula
   templateUrl: './lista-alumnos.html',
   styleUrl: './lista-alumnos.css',
 })
-export class ListaAlumnos implements OnInit{
-  formularios!:FormGroup
+export class ListaAlumnos implements OnInit {
 
-  alumnos: IAlumnos[]=[]
-  nuevoAlumno:IAlumnos={
-    matricula:'',
-    nombre:'',
-    correo:'',
-    materia:''
-  }
+  formularios!: FormGroup;
 
-  ngOnInit():void{
-    this.cargarAlumno()
-    this.formulario=new FormGroup{
+  alumnos: IAlumnos[] = [];
+  nuevoAlumno: IAlumnos = {
+    matricula: 'xx',
+    nombre: 'xx',
+    correo: 'xx',
+    materia: 'xx'
+  };
+
+  ngOnInit(): void {
+
+    this.cargarAlumno();
+
+    this.formularios = new FormGroup({
       matricula: new FormControl(''),
       nombre: new FormControl(''),
       correo: new FormControl(''),
-      materia: new FormControl(''),
-    }
+      materia: new FormControl('')
+    });
+
+  }
+  muestraAlumnos():void{
+  this.nuevoAlumno.matricula=this.formularios.value.matricula
+  this.nuevoAlumno.nombre=this.formularios.value.nombre
+  this.nuevoAlumno.correo=this.formularios.value.correo
+  this.nuevoAlumno.materia=this.formularios.value.materia
+
   }
 
-  cargarAlumno(){
-    
+  cargarAlumno(): void {
+
   }
+
 }

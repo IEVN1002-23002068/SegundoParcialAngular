@@ -1,8 +1,7 @@
-
 <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
 
   <h1 class="text-3xl font-bold text-gray-900 mb-6">
-    Formulario
+    Lista Alumnos
   </h1>
 
   <form [formGroup]="formularios">
@@ -28,34 +27,6 @@
         placeholder="Matrícula"
       >
 
-      <!-- Error required -->
-      <div
-        *ngIf="
-          contactForm.get('matricula')?.touched &&
-          contactForm.get('matricula')?.errors?.['required']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        Este campo es obligatorio.
-      </div>
-
-      <!-- Error minlength -->
-      <div
-        *ngIf="
-          contactForm.get('matricula')?.touched &&
-          contactForm.get('matricula')?.errors?.['minlength']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        La matrícula debe tener al menos
-        {{
-          contactForm.get('matricula')?.errors?.['minlength']?.requiredLength
-        }}
-        caracteres.
-      </div>
-
     </div>
 
 
@@ -80,34 +51,6 @@
         placeholder="Nombre"
       >
 
-      <!-- Error required -->
-      <div
-        *ngIf="
-          contactForm.get('nombre')?.touched &&
-          contactForm.get('nombre')?.errors?.['required']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        Este campo es obligatorio.
-      </div>
-
-      <!-- Error minlength -->
-      <div
-        *ngIf="
-          contactForm.get('nombre')?.touched &&
-          contactForm.get('nombre')?.errors?.['minlength']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        El nombre debe tener al menos
-        {{
-          contactForm.get('nombre')?.errors?.['minlength']?.requiredLength
-        }}
-        caracteres.
-      </div>
-
     </div>
 
 
@@ -125,40 +68,12 @@
         type="email"
         id="correo"
         name="correo"
-        formControlCorreo="matricula"
+        formControlName="correo"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="Correo electrónico"
       >
-
-      <!-- Error required -->
-      <div
-        *ngIf="
-          contactForm.get('correo')?.touched &&
-          contactForm.get('correo')?.errors?.['required']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        Este campo es obligatorio.
-      </div>
-
-      <!-- Error minlength -->
-      <div
-        *ngIf="
-          contactForm.get('correo')?.touched &&
-          contactForm.get('correo')?.errors?.['minlength']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        El correo debe tener al menos
-        {{
-          contactForm.get('correo')?.errors?.['minlength']?.requiredLength
-        }}
-        caracteres.
-      </div>
 
     </div>
 
@@ -177,40 +92,12 @@
         type="text"
         id="materia"
         name="materia"
-        formControlName="matricula"
+        formControlName="materia"
         required
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="Materia"
       >
-
-      <!-- Error required -->
-      <div
-        *ngIf="
-          contactForm.get('materia')?.touched &&
-          contactForm.get('materia')?.errors?.['required']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        Este campo es obligatorio.
-      </div>
-
-      <!-- Error minlength -->
-      <div
-        *ngIf="
-          contactForm.get('materia')?.touched &&
-          contactForm.get('materia')?.errors?.['minlength']
-        "
-        class="p-4 mt-2 text-sm text-red-800 rounded-lg bg-red-50"
-        role="alert"
-      >
-        La materia debe tener al menos
-        {{
-          contactForm.get('materia')?.errors?.['minlength']?.requiredLength
-        }}
-        caracteres.
-      </div>
 
     </div>
 
@@ -232,5 +119,13 @@
 
   </form>
 
-</div>
 
+  <!-- Información del alumno -->
+  <h1>Lista Alumnos</h1>
+
+  <h2>matricula: {{nuevoAlumno.matricula}}</h2>
+  <h2>nombre: {{nuevoAlumno.nombre}}</h2>
+  <h2>correo: {{nuevoAlumno.correo}}</h2>
+  <h2>materia: {{nuevoAlumno.materia}}</h2>
+
+</div>
