@@ -145,4 +145,5 @@ export class Cinepolis implements OnInit {
     this.mostrar = false;
     this.mensaje = '';
   }
+  
 }

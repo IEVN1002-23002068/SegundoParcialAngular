@@ -1,87 +1,120 @@
-<div *ngIf="!verVistaRegistros" class="contenedor">
+<div *ngIf="!verVistaRegistros"
+     class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow">
 
-  <h1>CINÉPOLIS</h1>
-  <h2>Registro de venta de boletos</h2>
+  <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">
+    CINEPOLIS
+  </h1>
 
   <form [formGroup]="formularios" (ngSubmit)="procesar()">
 
-    <div class="campo">
-      <label for="nombre">Nombre del comprador:</label>
-      <input
-        id="nombre"
-        type="text"
-        formControlName="nombre"
-        placeholder="Escribe el nombre"
-      >
-    </div>
+    <!-- ENTRADAS -->
+    <div class="border rounded-lg p-5">
 
-    <div class="campo">
-      <label for="compradores">Cantidad de compradores:</label>
-      <input
-        id="compradores"
-        type="number"
-        formControlName="compradores"
-        min="1"
-      >
-    </div>
+      <h2 class="text-xl font-bold mb-4">Entradas</h2>
 
-    <div class="campo">
-      <label>¿Cuenta con tarjeta Cineco?</label>
+      <div class="mb-4">
+        <label for="nombre" class="block mb-2">Nombre</label>
 
-      <div class="opciones">
-        <label>
-          <input
-            type="radio"
-            formControlName="cineco"
-            value="si"
-          >
+        <input
+          type="text"
+          id="nombre"
+          formControlName="nombre"
+          class="border rounded-lg w-full p-2.5"
+          placeholder="Nombre del comprador">
+      </div>
+
+      <div class="mb-4">
+        <label for="compradores" class="block mb-2">
+          Cantidad de compradores
+        </label>
+
+        <input
+          type="number"
+          id="compradores"
+          formControlName="compradores"
+          min="1"
+          class="border rounded-lg w-full p-2.5">
+      </div>
+
+      <div class="mb-4">
+        <p class="mb-2">Tarjeta Cineco</p>
+
+        <label class="mr-5">
+          <input type="radio" formControlName="cineco" value="si">
           Sí
         </label>
 
         <label>
-          <input
-            type="radio"
-            formControlName="cineco"
-            value="no"
-          >
+          <input type="radio" formControlName="cineco" value="no">
           No
         </label>
       </div>
+
+      <div class="mb-4">
+        <label for="boletos" class="block mb-2">
+          Cantidad de boletos
+        </label>
+
+        <input
+          type="number"
+          id="boletos"
+          formControlName="boletos"
+          min="1"
+          class="border rounded-lg w-full p-2.5">
+      </div>
+
     </div>
 
-    <div class="campo">
-      <label for="boletos">Cantidad de boletos:</label>
-      <input
-        id="boletos"
-        type="number"
-        formControlName="boletos"
-        min="1"
-      >
+    <div class="flex justify-center gap-4 mt-5">
+
+      <button
+        type="submit"
+        class="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-2.5">
+        Procesar
+      </button>
+
+      <button
+        type="button"
+        (click)="verRegistros()"
+        class="bg-gray-600 hover:bg-gray-700 text-white rounded-lg px-6 py-2.5">
+        Ver registros
+      </button>
+
     </div>
 
-    <div class="botones">
-      <button type="submit">Procesar venta</button>
-      <button type="button" (click)="limpiar()">Limpiar</button>
-      <button type="button" (click)="verRegistros()">Ver registros</button>
-    </div>
+    <p *ngIf="mensaje !== ''"
+       class="text-red-600 text-center mt-4">
+      {{ mensaje }}
+    </p>
 
   </form>
 
-  <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
+  <!-- SALIDAS -->
+  <div class="border rounded-lg p-5 mt-6">
 
-  <div *ngIf="mostrar" class="resultado">
-    <h2>Resumen de la venta</h2>
+    <h2 class="text-xl font-bold mb-4">Salidas</h2>
 
-    <p><strong>Comprador:</strong> {{ nombreComprador }}</p>
-    <p><strong>Cantidad de compradores:</strong> {{ cantidadCompradores }}</p>
-    <p><strong>Cantidad de boletos:</strong> {{ cantidadBoletos }}</p>
-    <p><strong>Importe original:</strong> {{ importeOriginal | currency:'MXN' }}</p>
-    <p><strong>Descuento total:</strong> {{ importeDescuento | currency:'MXN' }}</p>
-    <p><strong>Total a pagar:</strong> {{ totalPagar | currency:'MXN' }}</p>
+    <p class="mb-3">
+      Nombre: {{ mostrar ? nombreComprador : '' }}
+    </p>
+
+    <p class="mb-3">
+      Cantidad de compradores: {{ mostrar ? cantidadCompradores : '' }}
+    </p>
+
+    <p class="mb-3">
+      Cantidad de boletos: {{ mostrar ? cantidadBoletos : '' }}
+    </p>
+
+    <p class="text-xl font-bold text-blue-800">
+      Valor a pagar: {{ mostrar ? ('$' + totalPagar.toFixed(2)) : '' }}
+    </p>
+
   </div>
 
 </div>
 
+<!-- VISTA DE REGISTROS -->
 <div *ngIf="verVistaRegistros">
   <app-ver-registros
     (volver)="volverCinepolis()">

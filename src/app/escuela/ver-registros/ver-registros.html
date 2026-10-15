@@ -1,0 +1,197 @@
+<div class="max-w-7xl mx-auto p-6 bg-white rounded-lg shadow">
+
+  <h1 class="text-3xl font-bold text-center text-blue-800 mb-6">
+    Registros de ventas
+  </h1>
+
+  <button
+    type="button"
+    (click)="regresar()"
+    class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-6">
+    Regresar a Cinépolis
+  </button>
+
+  <p
+    *ngIf="mensaje"
+    class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50">
+    {{ mensaje }}
+  </p>
+
+  <div
+    *ngIf="ventas.length === 0"
+    class="p-4 mb-4 text-sm text-gray-700 rounded-lg bg-gray-100">
+    No hay ventas registradas.
+  </div>
+
+  <div *ngIf="ventas.length > 0" class="overflow-x-auto rounded-lg border">
+
+    <table class="w-full text-sm text-left text-gray-600">
+
+      <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+        <tr>
+          <th class="px-4 py-3">Nombre</th>
+          <th class="px-4 py-3">Compradores</th>
+          <th class="px-4 py-3">Tarjeta Cineco</th>
+          <th class="px-4 py-3">Boletos</th>
+          <th class="px-4 py-3">Total</th>
+          <th class="px-4 py-3">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let venta of ventas"
+          class="bg-white border-b hover:bg-gray-50">
+
+          <td class="px-4 py-3 font-medium text-gray-900">
+            {{ venta.nombre }}
+          </td>
+
+          <td class="px-4 py-3">{{ venta.compradores }}</td>
+
+          <td class="px-4 py-3">
+            {{ venta.cineco === 'si' ? 'Sí' : 'No' }}
+          </td>
+
+          <td class="px-4 py-3">{{ venta.boletos }}</td>
+
+          
+
+          <td class="px-4 py-3 font-bold text-blue-800">
+            {{ venta.total | currency:'MXN' }}
+          </td>
+
+
+          <td class="px-4 py-3">
+            <div class="flex flex-col gap-2">
+
+              <button
+                type="button"
+                (click)="editar(venta)"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-2">
+                Editar
+              </button>
+
+              <button
+                type="button"
+                (click)="eliminar(venta.id)"
+                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-2">
+                Eliminar
+              </button>
+
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+  <!-- FORMULARIO PARA EDITAR -->
+
+  <div
+    *ngIf="ventaEditando !== null"
+    class="mt-8 p-6 border border-gray-200 rounded-lg bg-gray-50">
+
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">
+      Editar venta
+    </h2>
+
+    <form
+      [formGroup]="formularioEdicion"
+      (ngSubmit)="guardarEdicion()">
+
+      <div class="mb-5">
+        <label
+          for="nombreEdicion"
+          class="block mb-2 text-sm font-medium text-gray-900">
+          Nombre del comprador
+        </label>
+
+        <input
+          id="nombreEdicion"
+          type="text"
+          formControlName="nombre"
+          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="compradoresEdicion"
+          class="block mb-2 text-sm font-medium text-gray-900">
+          Cantidad de compradores
+        </label>
+
+        <input
+          id="compradoresEdicion"
+          type="number"
+          min="1"
+          formControlName="compradores"
+          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      </div>
+
+      <div class="mb-5">
+        <p class="block mb-3 text-sm font-medium text-gray-900">
+          ¿Cuenta con tarjeta Cineco?
+        </p>
+
+        <div class="flex items-center gap-6">
+
+          <label class="flex items-center gap-2 text-sm text-gray-700">
+            <input
+              type="radio"
+              formControlName="cineco"
+              value="si"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+            Sí
+          </label>
+
+          <label class="flex items-center gap-2 text-sm text-gray-700">
+            <input
+              type="radio"
+              formControlName="cineco"
+              value="no"
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500">
+            No
+          </label>
+
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label
+          for="boletosEdicion"
+          class="block mb-2 text-sm font-medium text-gray-900">
+          Cantidad de boletos
+        </label>
+
+        <input
+          id="boletosEdicion"
+          type="number"
+          min="1"
+          formControlName="boletos"
+          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+
+        <button
+          type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+          Guardar cambios
+        </button>
+
+        <button
+          type="button"
+          (click)="cancelarEdicion()"
+          class="text-gray-900 bg-white border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">
+          Cancelar
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+
+</div>
