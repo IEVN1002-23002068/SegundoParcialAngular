@@ -7,7 +7,6 @@ import { initFlowbite } from 'flowbite';
 @Component({
   imports: [RouterOutlet, Navbar],
   selector: 'app-root',
-  styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App implements OnInit{

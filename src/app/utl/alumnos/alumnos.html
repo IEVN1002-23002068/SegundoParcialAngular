@@ -1,0 +1,63 @@
+<div class="max-w-7xl mx-auto p-6">
+    
+<div class="mb-6 border-b border-gray-200 pb-4">
+    <h1 class="text-3xl font-bold text-blue-800">
+        ALUMNOS
+    </h1>
+    <p class="mt-2 text-sm text-gray-500">
+        Consulta y administra los alumnos registrados.
+    </p>
+</div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+        <button type="button" [routerLink]="['/utl/agregar']" 
+            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow transition duration-200 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Agregar Alumno
+        </button>
+
+        <div class="w-full sm:w-72">
+            <input type="text" class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500 outline-none transition" 
+                placeholder="Filtrar por nombre..." [(ngModel)]="listFilter">
+        </div>
+    </div>
+
+    <div class="overflow-x-auto shadow-md sm:rounded-lg border border-gray-200">
+        <table class="w-full text-sm text-left text-gray-500" *ngIf="dataSource && dataSource.length > 0">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b border-gray-200">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Matrícula</th>
+                    <th scope="col" class="px-6 py-3">Nombre</th>
+                    <th scope="col" class="px-6 py-3">A.Paterno</th>
+                    <th scope="col" class="px-6 py-3">A.Materno</th>
+                    <th scope="col" class="px-6 py-3">Correo</th>
+                    <th scope="col" class="px-6 py-3 text-center">Editar</th>
+                    <th scope="col" class="px-6 py-3 text-center">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b hover:bg-gray-50 transition" *ngFor="let alumno of dataSource | alumnosFilter:listFilter">
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ alumno.matricula }}</td>
+                    <td class="px-6 py-4">{{ alumno.nombre | uppercase }}</td>
+                    <td class="px-6 py-4">{{ alumno.apaterno }}</td>
+                    <td class="px-6 py-4">{{ alumno.amaterno }}</td>
+                    <td class="px-6 py-4">{{ alumno.correo }}</td>
+                    
+                    <td class="px-6 py-4 text-center">
+                        <button type="button" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-md shadow transition duration-200" [routerLink]="['/utl/editar', alumno.matricula]">
+                            Editar
+                        </button>
+                    </td>
+
+                    <td class="px-6 py-4 text-center">
+                        <button [routerLink]="['/utl/eliminar', alumno.matricula]" type="button" class="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md shadow transition duration-200">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
